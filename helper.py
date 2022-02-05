@@ -74,8 +74,13 @@ def getAnalysis(score):
     return 'Positive'
 
 @st.cache()
-def preprocessing_data(word_query, number_of_tweets):
-  posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
+def preprocessing_data(word_query, number_of_tweets, function_option):
+
+  if function_option == "Search By #Tag and Words":
+    posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
+  
+  if function_option == "Search By Username":
+    posts = tweepy.Cursor(api.user_timeline, screen_name=word_query, count = 200, tweet_mode="extended").items((number_of_tweets))
   data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
 
   data['Tweets'] = data['Tweets'].apply(cleanTxt)
@@ -90,6 +95,6 @@ def preprocessing_data(word_query, number_of_tweets):
   return data
 
 
-def analysis_sentiment(data):
+def graph_sentiment(data):
   analys = data["Analysis"].value_counts().reset_index().sort_values(by="index", ascending=False)
   return analys
