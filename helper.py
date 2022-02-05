@@ -81,6 +81,7 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
   
   if function_option == "Search By Username":
     posts = tweepy.Cursor(api.user_timeline, screen_name=word_query, count = 200, tweet_mode="extended").items((number_of_tweets))
+  
   data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
 
   data['Tweets'] = data['Tweets'].apply(cleanTxt)
