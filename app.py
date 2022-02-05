@@ -1,5 +1,5 @@
 import streamlit as st
-from helper import preprocessing_data
+from helper import preprocessing_data, analysis_sentiment
 
 st.title("Twitter Sentimental Analysis")
 
@@ -10,5 +10,7 @@ st.info("1 Tweets takes approx 0.1 sec so you may have to wait {} minute for {} 
 if st.button("hi"):
 
     data = preprocessing_data(word_query, number_of_tweets)
-
+    analyse = analysis_sentiment(data)
     st.write(data)
+    st.bar_chart(analyse)
+    

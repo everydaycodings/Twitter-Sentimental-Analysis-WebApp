@@ -74,16 +74,21 @@ def getAnalysis(score):
 
 
 def preprocessing_data(word_query, number_of_tweets):
-    posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
-    data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
+  posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
+  data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
 
-    data['Tweets'] = data['Tweets'].apply(cleanTxt)
-    discard = ["CNFTGiveaway", "IVEAWAYPrizes", "Giveaway", "Airdrop"]
-    data = data[~data["Tweets"].str.contains('|'.join(discard))]
+  data['Tweets'] = data['Tweets'].apply(cleanTxt)
+  discard = ["CNFTGiveaway", "IVEAWAYPrizes", "Giveaway", "Airdrop"]
+  data = data[~data["Tweets"].str.contains('|'.join(discard))]
 
-    data['Subjectivity'] = data['Tweets'].apply(getSubjectivity)
-    data['Polarity'] = data['Tweets'].apply(getPolarity)
+  data['Subjectivity'] = data['Tweets'].apply(getSubjectivity)
+  data['Polarity'] = data['Tweets'].apply(getPolarity)
 
-    data['Analysis'] = data['Polarity'].apply(getAnalysis)
+  data['Analysis'] = data['Polarity'].apply(getAnalysis)
 
-    return data
+  return data
+
+
+def analysis_sentiment(data):
+  analys = data["Analysis"].value_counts().reset_index().sort_values(by="index", ascending=False)
+  return analys
