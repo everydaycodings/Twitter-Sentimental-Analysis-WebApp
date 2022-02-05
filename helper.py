@@ -4,6 +4,7 @@ import configparser
 import re
 from textblob import TextBlob
 from wordcloud import WordCloud
+import streamlit as st
 
 emoji_pattern = re.compile("["
         u"\U0001F600-\U0001F64F"  # emoticons
@@ -72,7 +73,7 @@ def getAnalysis(score):
   else:
     return 'Positive'
 
-
+@st.cache()
 def preprocessing_data(word_query, number_of_tweets):
   posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
   data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
