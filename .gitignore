@@ -4,6 +4,7 @@ test.py
 test.ipynb
 tester/
 credentials.py
+config.ini
 
 Datasets/New_Orleans_Airbnb_Listings_and_Reviews/
 Datasets/UPI_Payment_Apps_review/
