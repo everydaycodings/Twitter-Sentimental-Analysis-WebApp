@@ -114,11 +114,11 @@ def analyse_mention(data):
   mention = pd.DataFrame(data["mentions"].to_list()).add_prefix("mention_")
 
   try:
-    mention = pd.concat([mention["mention_0"], mention["mention_1"], mention["mention_2"]], ignore_index=True).reset_index(name="mention").drop("index",axis=1)
+    mention = pd.concat([mention["mention_0"], mention["mention_1"], mention["mention_2"]], ignore_index=True)
   except:
-    mention = pd.concat([mention["mention_0"]], ignore_index=True).reset_index(name="mention").drop("index",axis=1)
+    mention = pd.concat([mention["mention_0"]], ignore_index=True)
   
-  mention = mention.value_counts().head(10).reset_index()
+  mention = mention.value_counts().head(10)
   
   return mention
 
@@ -129,11 +129,11 @@ def analyse_hastag(data):
   hastag = pd.DataFrame(data["hastags"].to_list()).add_prefix("hastag_")
 
   try:
-    hastag = pd.concat([hastag["hastag_0"], hastag["hastag_1"], hastag["hastag_2"]], ignore_index=True).reset_index(name="hastags").drop("index",axis=1)
+    hastag = pd.concat([hastag["hastag_0"], hastag["hastag_1"], hastag["hastag_2"]], ignore_index=True)
   except:
-    hastag = pd.concat([hastag["hastag_0"]], ignore_index=True).reset_index(name="hastags").drop("index",axis=1)
+    hastag = pd.concat([hastag["hastag_0"]], ignore_index=True).reset_index(name="hastags")
   
-  hastag = hastag.value_counts().head(10).reset_index()
+  hastag = hastag.value_counts().head(10)
 
   return hastag
 

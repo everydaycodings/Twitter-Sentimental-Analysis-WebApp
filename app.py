@@ -31,8 +31,28 @@ if st.button("Analysis Sentiment"):
 
     data = preprocessing_data(word_query, number_of_tweets, function_option)
     analyse = graph_sentiment(data)
+    mention = analyse_mention(data)
+    hastag = analyse_hastag(data)
+
+    st.write(" ")
+    st.write(" ")
+    st.header("Extracted and Preprocessed Dataset")
     st.write(data)
-    st.write(analyse_mention(data))
-    st.write(analyse_hastag(data))
+    st.write(" ")
+    
+    col1, col2, col3 = st.columns(3)
+    with col2:
+        st.markdown("### EDA On the Data")
+
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.text("Top 10 @Mentions in {} tweets".format(number_of_tweets))
+        st.bar_chart(mention)
+    with col2:
+        st.text("Top 10 Hastags used in {} tweets".format(number_of_tweets))
+        st.bar_chart(hastag)
+
     st.bar_chart(analyse)
     
