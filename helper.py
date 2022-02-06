@@ -58,6 +58,11 @@ def cleanTxt(text):
     text = emoji_pattern.sub(r'', text)
     return text
 
+def extract(text):
+    text = re.findall("(@[A-Za-z0–9\d\w]+)", text)
+    return text
+
+
 def getSubjectivity(text):
    return TextBlob(text).sentiment.subjectivity
 
@@ -84,6 +89,10 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
   
   data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
 
+  data["mention"] = data["Tweets"].apply(extract)
+  data['links'] = data['Tweets'].str.extract('(https?:\/\/\S+)', expand=False).str.strip()
+  data['retweets'] = data['Tweets'].str.extract('(RT[\s@[A-Za-z0–9\d\w]+)', expand=False).str.strip()
+
   data['Tweets'] = data['Tweets'].apply(cleanTxt)
   discard = ["CNFTGiveaway", "IVEAWAYPrizes", "Giveaway", "Airdrop"]
   data = data[~data["Tweets"].str.contains('|'.join(discard))]
@@ -95,6 +104,10 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
 
   return data
 
+
+def graph_mention(data):
+  mention_data = pd.DataFrame(data["mention"].to_list()).add_prefix("mention_")
+  return mention_data
 
 def graph_sentiment(data):
   analys = data["Analysis"].value_counts().reset_index().sort_values(by="index", ascending=False)

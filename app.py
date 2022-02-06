@@ -1,5 +1,18 @@
 import streamlit as st
-from helper import preprocessing_data, graph_sentiment
+from helper import preprocessing_data, graph_sentiment, graph_mention
+
+st.set_page_config(
+     page_title="Data Analysis Web App",
+     page_icon="🧊",
+     layout="wide",
+     initial_sidebar_state="expanded",
+     menu_items={
+         'Get Help': 'https://github.com/everydaycodings/Data-Analysis-Web-App',
+         'Report a bug': "https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new",
+         'About': "# This is a header. This is an *extremely* cool app!"
+     }
+)
+
 
 st.title("Twitter Sentimental Analysis")
 
@@ -19,5 +32,6 @@ if st.button("Analysis Sentiment"):
     data = preprocessing_data(word_query, number_of_tweets, function_option)
     analyse = graph_sentiment(data)
     st.write(data)
+    st.write(graph_mention(data))
     st.bar_chart(analyse)
     
