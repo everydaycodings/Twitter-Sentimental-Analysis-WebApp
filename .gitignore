@@ -10,6 +10,7 @@ Datasets/New_Orleans_Airbnb_Listings_and_Reviews/
 Datasets/UPI_Payment_Apps_review/
 # C extensions
 *.so
+sent.ipynb
 
 # files
 # Distribution / packaging
