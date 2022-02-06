@@ -131,7 +131,7 @@ def analyse_hastag(data):
   try:
     hastag = pd.concat([hastag["hastag_0"], hastag["hastag_1"], hastag["hastag_2"]], ignore_index=True)
   except:
-    hastag = pd.concat([hastag["hastag_0"]], ignore_index=True).reset_index(name="hastags")
+    hastag = pd.concat([hastag["hastag_0"]], ignore_index=True)
   
   hastag = hastag.value_counts().head(10)
 
