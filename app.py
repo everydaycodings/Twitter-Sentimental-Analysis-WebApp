@@ -1,5 +1,5 @@
 import streamlit as st
-from helper import preprocessing_data, graph_sentiment, graph_mention
+from helper import preprocessing_data, graph_sentiment, analyse_mention, analyse_hastag
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -32,6 +32,7 @@ if st.button("Analysis Sentiment"):
     data = preprocessing_data(word_query, number_of_tweets, function_option)
     analyse = graph_sentiment(data)
     st.write(data)
-    st.write(graph_mention(data))
+    st.write(analyse_mention(data))
+    st.write(analyse_hastag(data))
     st.bar_chart(analyse)
     

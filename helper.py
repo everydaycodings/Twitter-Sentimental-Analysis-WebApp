@@ -109,9 +109,14 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
   return data
 
 
-def graph_mention(data):
+def analyse_mention(data):
   mention_data = pd.DataFrame(data["mentions"].to_list()).add_prefix("mention_")
   return mention_data
+
+def analyse_hastag(data):
+  hastag = pd.DataFrame(data["hastags"].to_list()).add_prefix("hastag_")
+  return hastag
+
 
 def graph_sentiment(data):
   analys = data["Analysis"].value_counts().reset_index().sort_values(by="index", ascending=False)
