@@ -98,7 +98,7 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
   data['retweets'] = data['Tweets'].str.extract('(RT[\s@[A-Za-z0–9\d\w]+)', expand=False).str.strip()
 
   data['Tweets'] = data['Tweets'].apply(cleanTxt)
-  discard = ["CNFTGiveaway", "IVEAWAYPrizes", "Giveaway", "Airdrop"]
+  discard = ["CNFTGiveaway", "GIVEAWAYPrizes", "Giveaway", "Airdrop", "GIVEAWAY", "makemoneyonline", "affiliatemarketing"]
   data = data[~data["Tweets"].str.contains('|'.join(discard))]
 
   data['Subjectivity'] = data['Tweets'].apply(getSubjectivity)
@@ -110,14 +110,36 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
 
 
 def analyse_mention(data):
-  mention_data = pd.DataFrame(data["mentions"].to_list()).add_prefix("mention_")
-  return mention_data
+
+  mention = pd.DataFrame(data["mentions"].to_list()).add_prefix("mention_")
+
+  try:
+    mention = pd.concat([mention["mention_0"], mention["mention_1"], mention["mention_2"]], ignore_index=True).reset_index(name="mention").drop("index",axis=1)
+  except:
+    mention = pd.concat([mention["mention_0"]], ignore_index=True).reset_index(name="mention").drop("index",axis=1)
+  
+  mention = mention.value_counts().head(10).reset_index()
+  
+  return mention
+
+
 
 def analyse_hastag(data):
+  
   hastag = pd.DataFrame(data["hastags"].to_list()).add_prefix("hastag_")
+
+  try:
+    hastag = pd.concat([hastag["hastag_0"], hastag["hastag_1"], hastag["hastag_2"]], ignore_index=True).reset_index(name="hastags").drop("index",axis=1)
+  except:
+    hastag = pd.concat([hastag["hastag_0"]], ignore_index=True).reset_index(name="hastags").drop("index",axis=1)
+  
+  hastag = hastag.value_counts().head(10).reset_index()
+
   return hastag
 
 
 def graph_sentiment(data):
+
   analys = data["Analysis"].value_counts().reset_index().sort_values(by="index", ascending=False)
+  
   return analys
