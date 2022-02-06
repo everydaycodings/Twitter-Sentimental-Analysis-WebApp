@@ -58,10 +58,13 @@ def cleanTxt(text):
     text = emoji_pattern.sub(r'', text)
     return text
 
-def extract(text):
+def extract_mentions(text):
     text = re.findall("(@[A-Za-z0–9\d\w]+)", text)
     return text
 
+def extract_hastag(text):
+    text = re.findall("(#[A-Za-z0–9\d\w]+)", text)
+    return text
 
 def getSubjectivity(text):
    return TextBlob(text).sentiment.subjectivity
@@ -89,7 +92,8 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
   
   data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
 
-  data["mention"] = data["Tweets"].apply(extract)
+  data["mentions"] = data["Tweets"].apply(extract_mentions)
+  data["hastags"] = data["Tweets"].apply(extract_hastag)
   data['links'] = data['Tweets'].str.extract('(https?:\/\/\S+)', expand=False).str.strip()
   data['retweets'] = data['Tweets'].str.extract('(RT[\s@[A-Za-z0–9\d\w]+)', expand=False).str.strip()
 
@@ -106,7 +110,7 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
 
 
 def graph_mention(data):
-  mention_data = pd.DataFrame(data["mention"].to_list()).add_prefix("mention_")
+  mention_data = pd.DataFrame(data["mentions"].to_list()).add_prefix("mention_")
   return mention_data
 
 def graph_sentiment(data):
