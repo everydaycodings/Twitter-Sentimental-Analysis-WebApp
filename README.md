@@ -23,7 +23,7 @@ Check out the live demo: ### Comming Soon
 
 # Note
 
-> #### Use this URL - [Click Me](https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new) - in case if you are faccing any problem with th WebApp or source code.
+> #### Use this URL - [Click Me](https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/issues/new) - in case if you are faccing any problem with th WebApp or source code.
 
 
 
