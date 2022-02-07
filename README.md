@@ -35,7 +35,7 @@ Source Code: [github link](https://github.com/everydaycodings/Twitter-Sentimenta
 1. Clone or download this repository to your local machine.
 2. Install all the libraries mentioned in the [requirements.txt](https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/requirements.txt) file with the command `pip3 install -r requirements.txt`
 3. Create a file name `config.ini`
-4. Paste the code and insert deatils you will get you keys here [developer.twitter.com](https://developer.twitter.com/en)
+4. Paste the code in `config.ini` and insert key deatils which you will get keys here [developer.twitter.com](https://developer.twitter.com/en)
 ```
 [twitter]
 
