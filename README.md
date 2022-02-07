@@ -34,8 +34,19 @@ Source Code: [github link](https://github.com/everydaycodings/Twitter-Sentimenta
 
 1. Clone or download this repository to your local machine.
 2. Install all the libraries mentioned in the [requirements.txt](https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/requirements.txt) file with the command `pip3 install -r requirements.txt`
-3. Open your terminal/command prompt from your project directory and run the file `app.py` by executing the command `streamlit run app.py`.
-4. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
+3. Create a file name `config.ini`
+4. Paste the code and insert deatils you will get you keys here [developer.twitter.com](https://developer.twitter.com/en)
+```
+[twitter]
+
+api_key = Your Keys
+api_key_secret = Your Keys
+
+access_token = Your Keys
+access_token_secret = Your Keys
+```
+5. Open your terminal/command prompt from your project directory and run the file `app.py` by executing the command `streamlit run app.py`.
+6. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
 
 ## Architecture of your Project Home Directory
 <p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/pic1.png" width="240" height="410" /></p>
