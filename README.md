@@ -14,14 +14,9 @@
 - Gives the Overall **Sentiment Analysis** of the **Tweets** in form of **graph**.
 - You can **download/export** the tweets in form of csv file.
 
-## Upcomming Features for the WebApp:
-- More **Supporting data Formates**.
-- **Improving the UI** of the WEB APP.
-- More **Detailed Analysis** of The data.
-- And many more... 
 
 
-Check out the live demo: https://data-analysis-webapp.herokuapp.com/
+Check out the live demo: ### Comming Soon
 
 ### Vedio demo:
 <p><img  alt="GIF" src="https://github.com/everydaycodings/Data-Analysis-Web-App/blob/master/presentation/vedio.gif" width="800" height="450" /></p>
@@ -38,7 +33,7 @@ Source Code: [github link](https://github.com/everydaycodings/Data-Analysis-Web-
 ## How to run the project?
 
 1. Clone or download this repository to your local machine.
-2. Install all the libraries mentioned in the [requirements.txt](https://github.com/everydaycodings/Data-Analysis-Web-App/blob/master/requirements.txt) file with the command `pip3 install -r requirements.txt`
+2. Install all the libraries mentioned in the [requirements.txt](https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/requirements.txt) file with the command `pip3 install -r requirements.txt`
 3. Open your terminal/command prompt from your project directory and run the file `app.py` by executing the command `streamlit run app.py`.
 4. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
 

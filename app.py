@@ -66,5 +66,6 @@ if st.button("Analysis Sentiment"):
         filtered_data = data[data["links"].isin(data["links"].value_counts().head(10).reset_index()["index"].values)]
         st.write(filtered_data)
 
+    st.subheader("Twitter Sentment Analysis")
     st.bar_chart(analyse)
     
