@@ -19,7 +19,7 @@
 Check out the live demo: ### Comming Soon
 
 ### Vedio demo:
-<p><img  alt="GIF" src="https://github.com/everydaycodings/Data-Analysis-Web-App/blob/master/presentation/vedio.gif" width="800" height="450" /></p>
+<p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/demo.gif" width="800" height="450" /></p>
 
 # Note
 
@@ -27,7 +27,7 @@ Check out the live demo: ### Comming Soon
 
 
 
-Source Code: [github link](https://github.com/everydaycodings/Data-Analysis-Web-App)
+Source Code: [github link](https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp)
 
 
 ## How to run the project?
@@ -38,7 +38,7 @@ Source Code: [github link](https://github.com/everydaycodings/Data-Analysis-Web-
 4. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
 
 ## Architecture of your Project Home Directory
-<p><img  alt="GIF" src="https://github.com/everydaycodings/files-for-multiplethings/blob/master/rt32.png" width="240" height="410" /></p>
+<p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/pic1.png" width="240" height="410" /></p>
 
 
 ### If you Use this Code for Any Commercial Purpose. Please Don't Forget To mention or give shoutout to [everydaycodings](https://github.com/everydaycodings).
