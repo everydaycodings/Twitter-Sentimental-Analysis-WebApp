@@ -1,6 +1,6 @@
 from attr import has
 import streamlit as st
-from helper import preprocessing_data, graph_sentiment, analyse_mention, analyse_hastag
+from helper import preprocessing_data, graph_sentiment, analyse_mention, analyse_hastag, download_data
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -39,6 +39,7 @@ if st.button("Analysis Sentiment"):
     st.write(" ")
     st.header("Extracted and Preprocessed Dataset")
     st.write(data)
+    download_data(data, label="twitter_sentiment_filtered")
     st.write(" ")
     
     col1, col2, col3 = st.columns(3)
