@@ -54,6 +54,16 @@ if st.button("Analysis Sentiment"):
     with col2:
         st.text("Top 10 Hastags used in {} tweets".format(number_of_tweets))
         st.bar_chart(hastag)
+    
+    col3, col4 = st.columns(2)
+    with col3:
+        st.text("Top 10 Used Links for {} tweets".format(number_of_tweets))
+        st.bar_chart(data["links"].value_counts().head(10).reset_index())
+    
+    with col4:
+        st.text("All the Tweets that containes top 10 links used")
+        filtered_data = data[data["links"].isin(data["links"].value_counts().head(10).reset_index()["index"].values)]
+        st.write(filtered_data)
 
     st.bar_chart(analyse)
     
