@@ -16,7 +16,7 @@
 
 
 
-Check out the live demo: ### Comming Soon
+Check out the live demo: https://twitter--sentiment--analysiss.herokuapp.com/
 
 ### Vedio demo:
 <p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/demo.gif" width="800" height="450" /></p>
