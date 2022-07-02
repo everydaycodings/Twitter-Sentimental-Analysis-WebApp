@@ -31,22 +31,39 @@ emoji_pattern = re.compile("["
 
 
 
+# def twitter_connection():
+
+#     config = configparser.ConfigParser()
+#     config.read("config.ini")
+
+#     api_key = config["twitter"]["api_key"]
+#     api_key_secret = config["twitter"]["api_key_secret"]
+#     access_token = config["twitter"]["access_token"]
+
+#     auth = tweepy.OAuthHandler(api_key, api_key_secret)
+#     api = tweepy.API(auth)
+
+#     print(api.verify_credentials().screen_name)
+
+#     return api
+
 def twitter_connection():
 
     config = configparser.ConfigParser()
     config.read("config.ini")
 
-    api_key = config["twitter"]["api_key"]
-    api_key_secret = config["twitter"]["api_key_secret"]
-    access_token = config["twitter"]["access_token"]
+    client = tweepy.Client(bearer_token="AAAAAAAAAAAAAAAAAAAAAJFWZAEAAAAAvgFOClWW8pswCFBMRVEN7n%2BUgNk%3D90pottnVWP07HrCliQyD80ujgeiZ31VitKSRbN8mQWsnKTa4n9")
 
-    auth = tweepy.OAuthHandler(api_key, api_key_secret)
-    api = tweepy.API(auth)
+    # client = tweepy.Client(
+    #     consumer_key=config["twitter"]["api_key"],
+    #     consumer_secret=config["twitter"]["api_key_secret"],
+    #     access_token=config["twitter"]["access_token"],
+    #     access_token_secret=config["twitter"]["access_token_secret"]
+    # )
 
-    return api
+    return client
 
-api = twitter_connection()
-
+client = twitter_connection()
 
 def cleanTxt(text):
     text = re.sub('@[A-Za-z0–9]+', '', text) #Removing @mentions
@@ -86,12 +103,14 @@ def getAnalysis(score):
 def preprocessing_data(word_query, number_of_tweets, function_option):
 
   if function_option == "Search By #Tag and Words":
-    posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
-  
-  if function_option == "Search By Username":
-    posts = tweepy.Cursor(api.user_timeline, screen_name=word_query, count = 200, tweet_mode="extended").items((number_of_tweets))
-  
-  data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
+    # posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
+    response = client.search_recent_tweets(query=word_query, max_results=100)
+    print("RESPONSE:", response.meta)
+  # if function_option == "Search By Username":
+    # posts = tweepy.Cursor(api.user_timeline, screen_name=word_query, count = 200, tweet_mode="extended").items((number_of_tweets))
+  posts = response.data
+
+  data  = pd.DataFrame([tweet.text for tweet in posts], columns=['Tweets'])
 
   data["mentions"] = data["Tweets"].apply(extract_mentions)
   data["hastags"] = data["Tweets"].apply(extract_hastag)
