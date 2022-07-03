@@ -102,7 +102,7 @@ def getAnalysis(score):
 @st.cache(allow_output_mutation=True)
 def preprocessing_data(word_query, number_of_tweets, function_option):
 
-  if function_option == "Search By #Tag and Words":
+  if function_option == "Twitter":
     # posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
     response = client.search_recent_tweets(query=word_query, max_results=100)
     print("RESPONSE:", response.meta)
