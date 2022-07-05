@@ -43,7 +43,7 @@ emoji_pattern = re.compile("["
 #     auth = tweepy.OAuthHandler(api_key, api_key_secret)
 #     api = tweepy.API(auth)
 
-#     print(api.verify_credentials().screen_name)
+#     # print(api.verify_credentials().screen_name)
 
 #     return api
 

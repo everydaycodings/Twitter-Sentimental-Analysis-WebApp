@@ -6,34 +6,28 @@ from helper import preprocessing_data, graph_sentiment, analyse_mention, analyse
 def app():
 
     st.set_page_config(
-        page_title="Data Analysis Web App",
-        page_icon="🧊",
+        page_title="Mindvalley Social Dashboard",
+        page_icon="icon.png",
         layout="wide",
         initial_sidebar_state="expanded",
-        menu_items={
-            'Get Help': 'https://github.com/everydaycodings/Data-Analysis-Web-App',
-            'Report a bug': "https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new",
-            'About': "# This is a header. This is an *extremely* cool app!"
-        }
+
     )
 
 
-    st.sidebar.image('logo.png')
+    st.sidebar.image('logo_new.png')
 
     function_option = st.sidebar.selectbox("Select the platform: ",["Twitter", "Facebook", "Instagram"] )
 
     if function_option == "Twitter":
+        st.sidebar.checkbox("Include retweets")
+        st.title("Social Media Analytics Dashboard")
 
-        st.title("Twitter Sentimental Analysis")
+        word_query = st.text_input("Enter a hashtag or any word", placeholder="#mindvalley")
 
-        word_query = st.text_input("Enter the Hastag or any word")
-
-    
-
-        number_of_tweets = st.slider("How many tweets You want to collect from {}".format(word_query), min_value=100, max_value=10000)
+        number_of_tweets = st.slider("How many tweets would you like to analyse {}".format(word_query), min_value=100, max_value=10000)
         st.info("1 Tweets takes approx 0.05 sec so you may have to wait 5 seconds for 100 Tweets.")
-
-        if st.button("Analysis Sentiment"):
+        
+        if st.button("Analyse Sentiment"):
 
             data = preprocessing_data(word_query, number_of_tweets, function_option)
             analyse = graph_sentiment(data)
@@ -65,7 +59,7 @@ def app():
             with col3:
                 st.text("Top 10 Used Links for {} tweets".format(number_of_tweets))
                 st.bar_chart(data["links"].value_counts().head(10).reset_index())
-            
+
             with col4:
                 st.text("All the Tweets that containes top 10 links used")
                 filtered_data = data[data["links"].isin(data["links"].value_counts().head(10).reset_index()["index"].values)]
@@ -77,4 +71,4 @@ def app():
     else: st.header("Coming Soon")
 
 if __name__ == '__main__':
-    app()      
+    app()   
