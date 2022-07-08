@@ -10,23 +10,26 @@ def app():
         page_icon="icon.png",
         layout="wide",
         initial_sidebar_state="expanded",
-
     )
 
-
+    st.header("Social Media Analytics Dashboard")
     st.sidebar.image('logo_new.png')
 
     function_option = st.sidebar.selectbox("Select the platform: ",["Twitter", "Facebook", "Instagram"] )
 
     if function_option == "Twitter":
+        # st.image('banner.png')
         st.sidebar.checkbox("Include retweets")
-        st.title("Social Media Analytics Dashboard")
-
+        
+        st.write(" ")
+        st.write(" ")
+        st.write(" ")
         word_query = st.text_input("Enter a hashtag or any word", placeholder="#mindvalley")
-
+        
+        st.write(" ")
         number_of_tweets = st.slider("How many tweets would you like to analyse {}".format(word_query), min_value=100, max_value=10000)
         st.info("1 Tweets takes approx 0.05 sec so you may have to wait 5 seconds for 100 Tweets.")
-        
+
         if st.button("Analyse Sentiment"):
 
             data = preprocessing_data(word_query, number_of_tweets, function_option)
@@ -40,7 +43,7 @@ def app():
             st.write(data)
             download_data(data, label="twitter_sentiment_filtered")
             st.write(" ")
-            
+
             col1, col2, col3 = st.columns(3)
             with col2:
                 st.markdown("### EDA On the Data")
