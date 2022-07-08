@@ -110,7 +110,7 @@ def preprocessing_data(word_query, number_of_tweets, function_option):
     # posts = tweepy.Cursor(api.user_timeline, screen_name=word_query, count = 200, tweet_mode="extended").items((number_of_tweets))
   # posts = response.data
 
-  data  = pd.DataFrame([tweet.text for tweet in posts], columns=['Tweets'])
+  data  = pd.DataFrame([tweet.full_text for tweet in posts], columns=['Tweets'])
 
   data["mentions"] = data["Tweets"].apply(extract_mentions)
   data["hastags"] = data["Tweets"].apply(extract_hastag)
