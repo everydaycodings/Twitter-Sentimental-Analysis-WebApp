@@ -6,14 +6,13 @@ from helper import preprocessing_data, graph_sentiment, analyse_mention, analyse
 def app():
 
     st.set_page_config(
-        page_title="Mindvalley Social Dashboard",
+        page_title="Social Dashboard",
         page_icon="icon.png",
         layout="wide",
         initial_sidebar_state="expanded",
     )
 
     st.header("Social Media Analytics Dashboard")
-    st.sidebar.image('logo_new.png')
 
     function_option = st.sidebar.selectbox("Select the platform: ",["Twitter", "Facebook", "Instagram"] )
 
@@ -24,7 +23,7 @@ def app():
         st.write(" ")
         st.write(" ")
         st.write(" ")
-        word_query = st.text_input("Enter a hashtag or any word", placeholder="#mindvalley")
+        word_query = st.text_input("Enter a hashtag or any word", placeholder="#query")
         
         st.write(" ")
         number_of_tweets = st.slider("How many tweets would you like to analyse {}".format(word_query), min_value=100, max_value=10000)
