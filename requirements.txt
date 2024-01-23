@@ -4,6 +4,7 @@ numpy
 datetime
 pytz
 textblob
-tweepy==4.4.0
+tweepy
 wordcloud
 configparser
+gunicorn==19.3.0
