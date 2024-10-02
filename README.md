@@ -1,10 +1,10 @@
-# Twitter Sentment Analysis
+# Twitter Sentiment Analysis
 
 ![Python](https://img.shields.io/badge/Python-3.8-blueviolet)
 ![Framework](https://img.shields.io/badge/Framework-sreamlit-red)
 
 
-#### **Twitter Sentment Analysis Web App**  using #tag, words and username to fetch data finds Insides of data and Tells Sentiment of the perticular #tag, words or username. 
+#### **Twitter Sentiment Analysis Web App**  using #tag, words and username to fetch data finds Insides of data and Tells Sentiment of the perticular #tag, words or username. 
 
 
 ## Features Of Data Analysis Web App
