@@ -47,21 +47,6 @@ def twitter_connection():
 
     return api
 
-# def twitter_connection():
-
-#     config = configparser.ConfigParser()
-#     config.read("config.ini")
-
-#     client = tweepy.Client(bearer_token="AAAAAAAAAAAAAAAAAAAAAJFWZAEAAAAAvgFOClWW8pswCFBMRVEN7n%2BUgNk%3D90pottnVWP07HrCliQyD80ujgeiZ31VitKSRbN8mQWsnKTa4n9")
-
-#     # client = tweepy.Client(
-#     #     consumer_key=config["twitter"]["api_key"],
-#     #     consumer_secret=config["twitter"]["api_key_secret"],
-#     #     access_token=config["twitter"]["access_token"],
-#     #     access_token_secret=config["twitter"]["access_token_secret"]
-#     # )
-
-#     return client
 
 api = twitter_connection()
 
