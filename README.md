@@ -16,8 +16,6 @@
 
 
 
-Check out the live demo: https://twitter--sentiment--analysiss.herokuapp.com/
-
 ### Vedio demo:
 <p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/demo.gif" width="800" height="450" /></p>
 
@@ -35,15 +33,16 @@ Source Code: [github link](https://github.com/everydaycodings/Twitter-Sentimenta
 1. Clone or download this repository to your local machine.
 2. Install all the libraries mentioned in the [requirements.txt](https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/requirements.txt) file with the command `pip3 install -r requirements.txt`
 3. Create a file name `config.ini`
-4. Paste the code in `config.ini` and insert key deatils which you will get keys here [developer.twitter.com](https://developer.twitter.com/en)
+4. Paste the code in `config.ini` and insert your own X API key details. Keep real keys local and never commit them.
 ```
 [twitter]
 
-api_key = Your Keys
-api_key_secret = Your Keys
+api_key = YOUR_API_KEY_HERE
+api_key_secret = YOUR_API_KEY_SECRET_HERE
 
-access_token = Your Keys
-access_token_secret = Your Keys
+access_token = YOUR_ACCESS_TOKEN_HERE
+access_token_secret = YOUR_ACCESS_TOKEN_SECRET_HERE
+bearer_token = YOUR_BEARER_TOKEN_HERE
 ```
 5. Open your terminal/command prompt from your project directory and run the file `app.py` by executing the command `streamlit run app.py`.
 6. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
