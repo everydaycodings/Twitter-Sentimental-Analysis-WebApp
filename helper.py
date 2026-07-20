@@ -39,8 +39,10 @@ def twitter_connection():
     api_key = config["twitter"]["api_key"]
     api_key_secret = config["twitter"]["api_key_secret"]
     access_token = config["twitter"]["access_token"]
+    access_token_secret = config["twitter"]["access_token_secret"]
 
     auth = tweepy.OAuthHandler(api_key, api_key_secret)
+    auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
 
     # print(api.verify_credentials().screen_name)
@@ -62,8 +64,6 @@ def twitter_connection():
 #     # )
 
 #     return client
-
-api = twitter_connection()
 
 def cleanTxt(text):
     text = re.sub('@[A-Za-z0–9]+', '', text) #Removing @mentions
@@ -103,6 +103,7 @@ def getAnalysis(score):
 def preprocessing_data(word_query, number_of_tweets, function_option):
 
   if function_option == "Twitter":
+    api = twitter_connection()
     posts = tweepy.Cursor(api.search_tweets, q=word_query, count = 200, lang ="en", tweet_mode="extended").items((number_of_tweets))
     # response = client.search_recent_tweets(query=word_query, max_results=100)
     # print("RESPONSE:", response.meta)
