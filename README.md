@@ -48,6 +48,27 @@ access_token_secret = Your Keys
 5. Open your terminal/command prompt from your project directory and run the file `app.py` by executing the command `streamlit run app.py`.
 6. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
 
+### Xquik exports
+
+Use **Upload Xquik export** in the sidebar to analyze an extraction CSV or JSON
+export without configuring live API credentials first. The helper also accepts
+JSON Lines created by the [Xquik CLI](https://docs.xquik.com/sdks/cli) or a
+documented conversion workflow. It recognizes canonical extraction fields such
+as `Tweet Text` and `tweetText`, then builds the same dashboard columns used by
+the live analysis flow.
+
+See [Export extraction](https://docs.xquik.com/api-reference/extractions/export)
+for the current export formats and field contract.
+
+Run the import tests with:
+
+```bash
+python3 -m unittest test_xquik_import.py test_helper.py
+```
+
+Xquik is an independent third-party service. Not affiliated with X Corp.
+"Twitter" and "X" are trademarks of X Corp.
+
 ## Architecture of your Project Home Directory
 <p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/pic1.png" width="240" height="410" /></p>
 

@@ -1,6 +1,6 @@
-from attr import has
 import streamlit as st
 from helper import preprocessing_data, graph_sentiment, analyse_mention, analyse_hastag, download_data
+from xquik_import import XquikImportError, build_twitter_dataframe, load_xquik_texts
 
 
 def app():
@@ -19,6 +19,35 @@ def app():
     if function_option == "Twitter":
         # st.image('banner.png')
         st.sidebar.checkbox("Include retweets")
+
+        uploaded_export = st.sidebar.file_uploader("Upload Xquik export", type=["csv", "json", "jsonl"])
+        if uploaded_export is not None:
+            try:
+                imported_tweets = load_xquik_texts(uploaded_export)
+            except XquikImportError as error:
+                st.sidebar.error(f"Could not read the export: {error}")
+            else:
+                data = build_twitter_dataframe(imported_tweets)
+                analyse = graph_sentiment(data)
+                mention = analyse_mention(data)
+                hastag = analyse_hastag(data)
+
+                st.sidebar.success(f"Loaded {len(imported_tweets)} tweets from the export.")
+                st.header("Imported Xquik Dataset")
+                st.write(data)
+                download_data(data, label="xquik_twitter_sentiment")
+
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.text(f"Top 10 @Mentions in {len(data)} tweets")
+                    st.bar_chart(mention)
+                with col2:
+                    st.text(f"Top 10 Hashtags used in {len(data)} tweets")
+                    st.bar_chart(hastag)
+
+                st.subheader("Twitter Sentiment Analysis")
+                st.bar_chart(analyse)
+                st.stop()
         
         st.write(" ")
         st.write(" ")
@@ -54,7 +83,7 @@ def app():
                 st.text("Top 10 @Mentions in {} tweets".format(number_of_tweets))
                 st.bar_chart(mention)
             with col2:
-                st.text("Top 10 Hastags used in {} tweets".format(number_of_tweets))
+                st.text("Top 10 Hashtags used in {} tweets".format(number_of_tweets))
                 st.bar_chart(hastag)
             
             col3, col4 = st.columns(2)
@@ -63,11 +92,11 @@ def app():
                 st.bar_chart(data["links"].value_counts().head(10).reset_index())
 
             with col4:
-                st.text("All the Tweets that containes top 10 links used")
+                st.text("All the Tweets that contain top 10 links used")
                 filtered_data = data[data["links"].isin(data["links"].value_counts().head(10).reset_index()["index"].values)]
                 st.write(filtered_data)
 
-            st.subheader("Twitter Sentment Analysis")
+            st.subheader("Twitter Sentiment Analysis")
             st.bar_chart(analyse)
 
     else: st.header("Coming Soon")
